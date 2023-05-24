@@ -23,12 +23,16 @@ run_unit_tests:
     - echo 'Cleaning the temp files'
 
 build_images:
+  only:
+    - main
   stage: build_images
   script:
     - echo 'Building the docker image'
     - echo 'Tagging the docker image'
 
 push_image:
+  only:
+    - main
   stage: build_images
   needs:
      - build_images
@@ -37,6 +41,8 @@ push_image:
     - echo 'Pushing image to docker registry'
 
 deploy_image:
+  only:
+    - main #run only on main branch
    stage: deploy
    script:
       - echo 'image successfully deployed to dev server'
