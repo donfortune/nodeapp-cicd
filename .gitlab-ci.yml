@@ -1,0 +1,22 @@
+run_tests:
+   before_script:
+      - echo 'preparing test data'
+   script:
+      - echo 'Running tests...'
+
+   after_script:
+      - echo 'Cleaning the temp files'
+
+
+
+build_images:
+   script:
+      - echo 'Building the docker image'
+      - echo 'Tagging the docker image'
+
+
+
+push_image:
+    script:
+      - echo 'Logging into docker image'
+      - echo 'pushing image to docker registry'
