@@ -8,6 +8,9 @@ stages:
   - build_images
   - push_image
   - deploy
+variables:
+    image_repo: docker.io/my-docker-id/myapp
+    image_tag: v1.2
 
 run_int_tests:
   stage: testing
@@ -28,12 +31,13 @@ run_unit_tests:
     - echo 'Cleaning the temp files'
 
 build_images:
+  
   only:
     - main
   stage: build_images
   script:
     - echo 'Building the docker image'
-    - echo 'Tagging the docker image'
+    - echo 'Tagging the docker image $image_repo:image_tag'
 
 push_image:
   only:
@@ -43,11 +47,11 @@ push_image:
      - build_images
   script:
     - echo 'Logging into docker image'
-    - echo 'Pushing image to docker registry'
+    - echo 'Pushing image $image_repo:image_tag to docker registry'
 
 deploy_image:
    only:
      - main
    stage: deploy
    script:
-      - echo 'image successfully deployed to dev server'
+      - echo 'image successfully deployed  $image_repo:image_tag to dev server'
