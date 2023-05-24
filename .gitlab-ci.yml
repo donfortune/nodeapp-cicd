@@ -1,22 +1,40 @@
-run_tests:
-   before_script:
-      - echo 'preparing test data'
-   script:
-      - echo 'Running tests...'
+stages:
+  - testing
+  - build_images
+  - push_image
+  - deploy
 
-   after_script:
-      - echo 'Cleaning the temp files'
+run_int_tests:
+  stage: testing
+  before_script:
+    - echo 'Preparing int test data'
+  script:
+    - echo 'Running tests...'
+  after_script:
+    - echo 'Cleaning the temp files'
 
-
+run_unit_tests:
+  stage: testing
+  before_script:
+    - echo 'Preparing unit test data'
+  script:
+    - echo 'Running tests...'
+  after_script:
+    - echo 'Cleaning the temp files'
 
 build_images:
-   script:
-      - echo 'Building the docker image'
-      - echo 'Tagging the docker image'
-
-
+  stage: build_images
+  script:
+    - echo 'Building the docker image'
+    - echo 'Tagging the docker image'
 
 push_image:
-    script:
-      - echo 'Logging into docker image'
-      - echo 'pushing image to docker registry'
+  stage: build_images
+  script:
+    - echo 'Logging into docker image'
+    - echo 'Pushing image to docker registry'
+
+deploy_image:
+   stage: deploy
+   script:
+      - echo 'image successfully deployed to dev server'
