@@ -30,6 +30,8 @@ build_images:
 
 push_image:
   stage: build_images
+  needs:
+     - build_images
   script:
     - echo 'Logging into docker image'
     - echo 'Pushing image to docker registry'
