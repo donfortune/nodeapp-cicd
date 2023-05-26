@@ -1,3 +1,5 @@
+image: node:17-alpine
+
 workflow:
   rules:
     - if: '$CI_COMMIT_BRANCH != "main" && $CI_PIPELINE_SOURCE != "merge_request_event"'
@@ -48,6 +50,7 @@ push_image:
   script:
     - echo 'Logging into docker image'
     - echo 'Pushing image $image_repo:image_tag to docker registry'
+
 
 deploy_image:
    only:
