@@ -18,7 +18,7 @@ run_int_tests:
     - ec2
     - aws
     - remote
-  stage: testing
+  stage: testing the pipeline
   before_script:
     - echo 'Preparing int test data'
   script:
