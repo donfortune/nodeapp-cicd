@@ -20,7 +20,7 @@ run_int_tests:
     - remote
   stage: testing the pipeline
   before_script:
-    - echo 'Preparing int test data'
+    - echo 'Preparing int test data and setting up test'
   script:
     - echo 'Running tests...'
   after_script:
